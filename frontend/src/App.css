@@ -1,0 +1,179 @@
+/* GLOBAL STYLES */
+
+body{
+  margin:0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg,#667eea,#764ba2);
+  min-height:100vh;
+}
+
+
+/* LOGIN PAGE */
+
+.login-container{
+  width:350px;
+  margin:120px auto;
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  text-align:center;
+}
+
+.login-container h2{
+  margin-bottom:20px;
+}
+
+.login-container input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:1px solid #ddd;
+  border-radius:6px;
+  font-size:14px;
+}
+
+.login-container button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  background:#667eea;
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.login-container button:hover{
+  background:#5563d1;
+}
+
+
+/* DASHBOARD */
+
+.dashboard{
+  width:80%;
+  margin:50px auto;
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.dashboard h1{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+
+/* FORM */
+
+.dashboard input{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border:1px solid #ddd;
+  border-radius:6px;
+  font-size:14px;
+}
+
+.dashboard button{
+  padding:12px 18px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+  margin-top:10px;
+}
+
+
+/* ADD STUDENT BUTTON */
+
+.dashboard button:first-of-type{
+  background:#28a745;
+  color:white;
+}
+
+.dashboard button:first-of-type:hover{
+  background:#218838;
+}
+
+
+/* STUDENT LIST */
+
+.student-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#f8f9fc;
+  padding:15px 20px;
+  margin-top:15px;
+  border-radius:8px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  transition:all 0.2s ease;
+}
+
+.student-card:hover{
+  transform:scale(1.01);
+  background:#eef1ff;
+}
+
+
+/* STUDENT DETAILS */
+
+.student-card p{
+  margin:0;
+  font-size:15px;
+  color:#333;
+}
+
+
+/* BUTTON GROUP */
+
+.student-card div{
+  display:flex;
+  gap:10px;
+}
+
+
+/* DELETE BUTTON */
+
+.student-card button{
+  background:#dc3545;
+  color:white;
+  padding:8px 12px;
+}
+
+.student-card button:hover{
+  background:#c82333;
+}
+
+
+/* UPDATE MARKS BUTTON */
+
+.student-card button:first-child{
+  background:#007bff;
+}
+
+.student-card button:first-child:hover{
+  background:#0069d9;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+  .dashboard{
+    width:95%;
+    padding:20px;
+  }
+
+  .student-card{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+}
