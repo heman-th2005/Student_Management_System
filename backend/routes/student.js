@@ -3,84 +3,151 @@ const router = express.Router();
 const Student = require("../models/Student");
 
 
-// GET all students
-router.get("/", async (req, res) => {
-  try {
-    const students = await Student.find();
+// ============================
+// SIGNUP
+// ============================
+
+router.post("/signup", async (req,res)=>{
+
+  try{
+
+    const newUser = new Student(req.body);
+
+    await newUser.save();
+
+    res.json("Signup successful");
+
+  }catch(error){
+
+    res.status(500).json(error);
+
+  }
+
+});
+
+
+// ============================
+// LOGIN
+// ============================
+
+router.post("/login", async (req,res)=>{
+
+  try{
+
+    const {email,password} = req.body;
+
+    const user = await Student.findOne({email,password});
+
+    if(!user){
+      return res.status(400).json("Invalid credentials");
+    }
+
+    res.json(user);
+
+  }catch(error){
+
+    res.status(500).json(error);
+
+  }
+
+});
+
+
+// ============================
+// GET ALL STUDENTS
+// ============================
+
+router.get("/", async (req,res)=>{
+
+  try{
+
+    const students = await Student.find({
+      role:"student"
+    });
+
     res.json(students);
-  } catch (error) {
+
+  }catch(error){
+
     res.status(500).json(error);
+
   }
+
 });
 
 
-// GET single student (for student login view)
-router.get("/:id", async (req, res) => {
-  try {
-    const student = await Student.findById(req.params.id);
-    res.json(student);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
+// ============================
+// UPDATE MARKS
+// ============================
 
+router.put("/marks/:id", async (req,res)=>{
 
-// ADD student (Teacher feature)
-router.post("/add", async (req, res) => {
-  try {
-    const newStudent = new Student(req.body);
-    await newStudent.save();
-    res.json("Student Added Successfully");
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
+  try{
 
+    const updated = await Student.findByIdAndUpdate(
 
-// UPDATE student details (Teacher feature)
-router.put("/update/:id", async (req, res) => {
-  try {
-
-    await Student.findByIdAndUpdate(
       req.params.id,
-      req.body,
-      { new: true }
+      { marks:req.body.marks },
+      { new:true }
+
     );
 
-    res.json("Student Updated Successfully");
+    res.json(updated);
 
-  } catch (error) {
+  }catch(error){
+
     res.status(500).json(error);
+
   }
+
 });
 
 
-// UPDATE student marks (Teacher feature)
-router.put("/marks/:id", async (req, res) => {
-  try {
+// ============================
+// UPDATE ATTENDANCE
+// ============================
 
-    await Student.findByIdAndUpdate(
+router.put("/attendance/:id", async (req,res)=>{
+
+  try{
+
+    const updated = await Student.findByIdAndUpdate(
+
       req.params.id,
-      { marks: req.body.marks },
-      { new: true }
+      { attendance:req.body.attendance },
+      { new:true }
+
     );
 
-    res.json("Marks Updated Successfully");
+    res.json(updated);
 
-  } catch (error) {
+  }catch(error){
+
     res.status(500).json(error);
+
   }
+
 });
 
 
-// DELETE student
-router.delete("/delete/:id", async (req, res) => {
-  try {
+// ============================
+// DELETE STUDENT
+// ============================
+
+router.delete("/delete/:id", async (req,res)=>{
+
+  try{
+
     await Student.findByIdAndDelete(req.params.id);
-    res.json("Student Deleted");
-  } catch (error) {
+
+    res.json("Student deleted");
+
+  }catch(error){
+
     res.status(500).json(error);
+
   }
+
 });
 
 module.exports = router;
