@@ -44,7 +44,7 @@ const login = async()=>{
 try{
 
 const res = await axios.post(
-"http://localhost:5000/students/login",
+"https://student-management-system-px1f.onrender.com/students/login",
 {
 email:form.email,
 password:form.password
@@ -69,7 +69,7 @@ const signup = async()=>{
 try{
 
 await axios.post(
-"http://localhost:5000/students/signup",
+"https://student-management-system-px1f.onrender.com/students/signup",
 form
 );
 
@@ -92,7 +92,7 @@ alert("Signup failed");
 const fetchStudents = async()=>{
 
 const res = await axios.get(
-"http://localhost:5000/students"
+"https://student-management-system-px1f.onrender.com/students"
 );
 
 setStudents(res.data);
@@ -113,7 +113,7 @@ fetchStudents();
 const updateMarks = async(id)=>{
 
 await axios.put(
-`http://localhost:5000/students/marks/${id}`,
+`https://student-management-system-px1f.onrender.com/students/marks/${id}`,
 {marks}
 );
 
@@ -127,7 +127,7 @@ fetchStudents();
 const updateAttendance = async(id)=>{
 
 await axios.put(
-`http://localhost:5000/students/attendance/${id}`,
+`https://student-management-system-px1f.onrender.com/students/attendance/${id}`,
 {attendance}
 );
 
@@ -141,7 +141,7 @@ fetchStudents();
 const deleteStudent = async(id)=>{
 
 await axios.delete(
-`http://localhost:5000/students/delete/${id}`
+`https://student-management-system-px1f.onrender.com/students/delete/${id}`
 );
 
 fetchStudents();
